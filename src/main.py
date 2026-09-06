@@ -1,11 +1,11 @@
 from contextlib import asynccontextmanager
-from typing import Annotated
 
-from fastapi import Depends, FastAPI
+from fastapi import FastAPI
 from fastapi.security import OAuth2PasswordBearer
 
-from config import create_db
-from models.users import User
+from src.config import create_db
+from src.models import Role, User
+from src.routers import user_router
 
 
 @asynccontextmanager
@@ -18,7 +18,9 @@ app = FastAPI(lifespan=lifespan)
 
 oauth2_schema = OAuth2PasswordBearer(tokenUrl="token")
 
+app.include_router(user_router)
 
-@app.get("/users/")
-async def get_item(token: Annotated[str, Depends(oauth2_schema)]):
-    return {"token": token}
+
+@app.get("/")
+def root():
+    return {"messege": "Api is runing"}
