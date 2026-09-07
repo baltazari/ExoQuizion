@@ -20,4 +20,11 @@ def get_session():
         yield session
 
 
+SECRET_KEY = os.environ["SECRET_KEY"]
+
+ALGORITHM = "HS256"
+
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
+
+
 SessionDep = Annotated[Session, Depends(get_session)]

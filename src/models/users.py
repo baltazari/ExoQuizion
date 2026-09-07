@@ -1,8 +1,6 @@
-from __future__ import annotations
-
 import uuid
 from datetime import datetime
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from sqlmodel import Column, DateTime, Field, Relationship, SQLModel, func
 
@@ -18,7 +16,7 @@ class User(SQLModel, table=True):
 
     role_id: int = Field(foreign_key="role.id")
 
-    role: Role | None = Relationship(back_populates="users")
+    role: Optional["Role"] = Relationship(back_populates="users")
 
     is_active: bool = True
 

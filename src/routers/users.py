@@ -1,10 +1,10 @@
 from fastapi import APIRouter, HTTPException, status
 from sqlmodel import select
+from src.utils.security import hash_pass
 
 from src.config import SessionDep
 from src.models.users import User
 from src.schemas.user import CheckUser, CreateUser
-from src.utils.hashps import hash_pass
 
 router = APIRouter(
     prefix="/users",
@@ -45,6 +45,7 @@ def create_user(
         email=user_data.email,
         username=user_data.username,
         password=hash_pass(user_data.password),
+        role_id=user_data.role_id,
     )
 
     session.add(user)

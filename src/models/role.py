@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from typing import TYPE_CHECKING
 
 from sqlmodel import Field, Relationship, SQLModel
@@ -18,4 +16,4 @@ class Role(SQLModel, table=True):
         index=True,
         max_length=50,
     )
-    users: list[User] = Relationship(back_populates="role")
+    users: list["User"] = Relationship(back_populates="role")
