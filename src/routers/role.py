@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException, status
 from sqlmodel import select
 
-from src.config import SessionDep
 from src.models import Role
 from src.schemas import AddRole, CheckRole
+from src.utils.dependencies import SessionDep
 
 router = APIRouter(
     prefix="/roles",

@@ -1,10 +1,10 @@
 from fastapi import APIRouter, HTTPException, status
 from sqlmodel import select
-from src.utils.security import hash_pass
 
-from src.config import SessionDep
-from src.models.users import User
+from src.models import User
 from src.schemas.user import CheckUser, CreateUser
+from src.utils.dependencies import SessionDep
+from src.utils.security import hash_pass
 
 router = APIRouter(
     prefix="/users",

@@ -1,7 +1,5 @@
 import os
-from typing import Annotated
 
-from fastapi import Depends
 from sqlmodel import Session, SQLModel, create_engine
 
 DATABASE_URL = os.getenv(
@@ -25,6 +23,3 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 ALGORITHM = "HS256"
 
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
-
-
-SessionDep = Annotated[Session, Depends(get_session)]
